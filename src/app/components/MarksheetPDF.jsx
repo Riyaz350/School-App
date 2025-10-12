@@ -39,7 +39,7 @@ const toBengaliDigits = (number) => {
 const styles = StyleSheet.create({
   page: {
     fontFamily: "NotoSansBengali",
-    padding: 20,
+    padding: 15,
     fontSize: 12,
     backgroundColor: "#fff",
     color: "#000",
@@ -50,8 +50,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 4,
   },
-  table: { marginTop: 10 },
-  cell: { padding: 4, borderBottom: "1px solid #ccc" },
+  headerCell: {
+    flex: 1,
+    padding: 6,
+    border: "1px solid #000",
+    textAlign: "center",
+    fontWeight: "bold",
+    backgroundColor: "#f0f0f0",
+  },
+  // table: { marginTop: 2 },
+  cell: {
+    flex: 1,
+    padding: 6,
+    border: "1px solid #000",
+    textAlign: "center",
+  },
   bold: { fontWeight: "bold" },
   section: {
     marginBottom: 30,
@@ -78,31 +91,37 @@ const MarksheetPDF = ({ students, subjects, examTitle, className }) => {
                 ইসলাম উদ্দিন দাখিল ইনস্টিটিউট, ব্রাহ্মণবাড়িয়া{" "}
               </Text>
               <Text style={styles.header}>
-                {examTitle || "৪র্থ মাসিক পরীক্ষা - ২০২৫ খ্রি:"}
+                {examTitle || "৫ম মাসিক পরীক্ষা - ২০২৫ খ্রি:"}
               </Text>
 
-              <View style={styles.row}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginBottom: 6,
+                }}
+              >
                 <Text>শ্রেণীঃ {className || "৩য়"}</Text>
                 <Text>রোল নম্বরঃ {toBengaliDigits(i + idx + 1)}</Text>
               </View>
-              <Text>নামঃ {student.name || "—"}</Text>
+              <Text>নামঃ {`${student.name} ` || "—"} </Text>
 
               <View style={styles.table}>
                 <View style={styles.row}>
-                  <Text style={[styles.cell, styles.bold]}>বিষয়সমূহ </Text>
+                  <Text style={styles.headerCell}>`বিষয়সমূহ `</Text>
                   {subjects.map((subject, sIdx) => (
-                    <Text key={sIdx} style={styles.cell}>
-                      {subject}
+                    <Text key={sIdx} style={styles.headerCell}>
+                      {`${subject} `}
                     </Text>
                   ))}
-                  <Text style={[styles.cell, styles.bold]}>মোট </Text>
-                  <Text style={[styles.cell, styles.bold]}>স্থান </Text>
+                  <Text style={styles.headerCell}>মোট </Text>
+                  <Text style={styles.headerCell}>স্থান</Text>
                 </View>
                 <View style={styles.row}>
-                  <Text style={[styles.cell, styles.bold]}>প্রাপ্ত নম্বর </Text>
+                  <Text style={styles.cell}>প্রাপ্ত নম্বর</Text>
                   {student.marks.map((mark, mIdx) => (
                     <Text key={mIdx} style={styles.cell}>
-                      {toBengaliDigits(mark || "০")}
+                      {toBengaliDigits(mark  || "০")}
                     </Text>
                   ))}
                   <Text style={styles.cell}>{toBengaliDigits(total)}</Text>
@@ -110,8 +129,8 @@ const MarksheetPDF = ({ students, subjects, examTitle, className }) => {
                 </View>
               </View>
 
-              <div className=' '>
-                <View style={[styles.row, { marginTop: 45 }]}>
+              <div className=" ">
+                <View style={[styles.row, { marginTop: 35 }]}>
                   <Text>শ্রেণি শিক্ষকের স্বাক্ষর</Text>
                   <Text>অধ্যক্ষের স্বাক্ষর</Text>
                 </View>
