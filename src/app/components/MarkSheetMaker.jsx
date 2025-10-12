@@ -5,6 +5,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDFDownloader from "./PDFDownloader";
 import MarkSheetTable from "./MarkSheetTable";
 import TabulationPDF from "./TabulationPDF";
+import CombinedMarkSheetPDF from "./CombinedMarkSheetPDF";
 import {
   Table,
   TableBody,
@@ -173,37 +174,56 @@ const MarkSheetMaker = () => {
           className="bg-blue-400 p-3 rounded-lg  w-fit  hover:cursor-pointer"
           onClick={setPositionsManually}
         >
-          📌 Set Position & Make Individual Mark Sheet
+          📌 Set Position & Make Mark Sheet
         </button>
 
         {showIndividualSheets && (
-          <div className="pr-2 text-white text-sm lg:text-lg font-bold">
-            <PDFDownloader
-              students={students}
-              subjects={subjects}
-              examTitle={examTitle}
-              className={className}
-            />
-            <PDFDownloadLink
-              document={
-                <TabulationPDF
-                  students={students}
-                  subjects={subjects}
-                  examTitle={examTitle}
-                  className={className}
-                />
-              }
-              fileName="tabulation-sheet.pdf"
-            >
-              {({ loading }) => (
-                <button className="bg-green-500 p-3 rounded-lg mt-3">
-                  {loading
-                    ? "📄 Preparing Table PDF..."
-                    : "📥 Download Tabulation Sheet"}
-                </button>
-              )}
-            </PDFDownloadLink>
-          </div>
+          <PDFDownloadLink
+            document={
+              <CombinedMarkSheetPDF
+                students={students}
+                subjects={subjects}
+                examTitle={examTitle}
+                className={className}
+              />
+            }
+            fileName="marksheet.pdf"
+          >
+            {({ loading }) => (
+              <button className="bg-green-600 text-white p-3 rounded-lg mt-3">
+                {loading
+                  ? "📄 Preparing PDF..."
+                  : "📥 Download Combined MarkSheet"}
+              </button>
+            )}
+          </PDFDownloadLink>
+          // <div className="pr-2 text-white text-sm lg:text-lg font-bold">
+          //   <PDFDownloader
+          //     students={students}
+          //     subjects={subjects}
+          //     examTitle={examTitle}
+          //     className={className}
+          //   />
+          //   <PDFDownloadLink
+          //     document={
+          //       <TabulationPDF
+          //         students={students}
+          //         subjects={subjects}
+          //         examTitle={examTitle}
+          //         className={className}
+          //       />
+          //     }
+          //     fileName="tabulation-sheet.pdf"
+          //   >
+          //     {({ loading }) => (
+          //       <button className="bg-green-500 p-3 rounded-lg mt-3">
+          //         {loading
+          //           ? "📄 Preparing Table PDF..."
+          //           : "📥 Download Tabulation Sheet"}
+          //       </button>
+          //     )}
+          //   </PDFDownloadLink>
+          // </div>
         )}
       </div>
       <Box
@@ -222,7 +242,7 @@ const MarkSheetMaker = () => {
           ইসলাম উদ্দিন দাখিল ইনস্টিটিউট ব্রাহ্মণবাড়িয়া
         </Typography>
 
-        <div className='flex justify-center gap-20 items-center'>
+        <div className="flex justify-center gap-20 items-center">
           <Box
             sx={{
               display: "flex",
@@ -243,11 +263,9 @@ const MarkSheetMaker = () => {
             />
           </Box>
 
-          <Typography variant="h6"  >
-            টাবুলেশন শিট
-          </Typography>
+          <Typography variant="h6">ট্যাবুলেশন শিট</Typography>
 
-          <Box sx={{ display: "inline-flex", alignItems: "center"  }}>
+          <Box sx={{ display: "inline-flex", alignItems: "center" }}>
             <TextField
               variant="standard"
               label="শ্রেণীঃ"
