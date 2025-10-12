@@ -89,7 +89,7 @@ const CombinedMarkSheetPDF = ({ students, subjects, examTitle, className }) => {
         {(examTitle || "৫ম মাসিক পরীক্ষা - ২০২৫ খ্রি:") + " "}
       </Text>
       <Text style={styles.header}>
-        {"টাবুলেশন শিট - শ্রেণীঃ " + (className || "৩য়") + " "}
+        {"টাবুলেশন শীট- শ্রেণিঃ " + (className || "৩য়") + " "}
       </Text>
 
       <View style={styles.row}>
@@ -151,7 +151,7 @@ const CombinedMarkSheetPDF = ({ students, subjects, examTitle, className }) => {
                   marginBottom: 6,
                 }}
               >
-                <Text>{"শ্রেণীঃ " + (className || "৩য়") + " "}</Text>
+                <Text>{"শ্রেণিঃ " + (className || "৩য়") + " "}</Text>
                 <Text>
                   {"রোল নম্বরঃ " + toBengaliDigits(i + idx + 1) + " "}
                 </Text>

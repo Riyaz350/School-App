@@ -37,11 +37,11 @@ const IndividualMarkSheet = ({ students, subjects, examTitle, className }) => {
               {examTitle || "৪র্থ মাসিক পরীক্ষা - ২০২৫ খ্রি:"}
             </Typography>
             <Typography sx={{ textAlign: "center", mb: 2 }}>
-              টাবুলেশন শিট
+              টাবুলেশন শীট
             </Typography>
 
             <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-              <Typography>শ্রেণীঃ {className || "৩য়"}</Typography>
+              <Typography>শ্রেণিঃ {className || "৩য়"}</Typography>
               <Typography>রোল নম্বরঃ {toBengaliDigits(idx + 1)}</Typography>
             </Box>
 

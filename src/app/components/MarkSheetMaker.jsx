@@ -263,12 +263,12 @@ const MarkSheetMaker = () => {
             />
           </Box>
 
-          <Typography variant="h6">ট্যাবুলেশন শিট</Typography>
+          <Typography variant="h6">ট্যাবুলেশন শীট</Typography>
 
           <Box sx={{ display: "inline-flex", alignItems: "center" }}>
             <TextField
               variant="standard"
-              label="শ্রেণীঃ"
+              label="শ্রেণিঃ"
               value={className}
               onChange={(e) => setClassName(e.target.value)}
               sx={{ minWidth: 100 }}

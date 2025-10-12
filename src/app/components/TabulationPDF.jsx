@@ -40,7 +40,7 @@ const TabulationPDF = ({ students, subjects, examTitle, className }) => (
     <Page size="A4" style={styles.page}>
       <Text style={styles.header}>ইসলাম উদ্দিন দাখিল ইনস্টিটিউট, ব্রাহ্মণবাড়িয়া </Text>
       <Text style={styles.header}>{examTitle || "৪র্থ মাসিক পরীক্ষা - ২০২৫ খ্রি:"}</Text>
-      <Text style={styles.header}>টাবুলেশন শিট - শ্রেণীঃ {className || "৩য়"}</Text>
+      <Text style={styles.header}>টাবুলেশন শীট- শ্রেণিঃ {className || "৩য়"}</Text>
 
       <View style={styles.row}>
         <Text style={[styles.cell, styles.bold]}>রোল নম্বর </Text>

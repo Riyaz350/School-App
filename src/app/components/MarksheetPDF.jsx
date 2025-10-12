@@ -101,7 +101,7 @@ const MarksheetPDF = ({ students, subjects, examTitle, className }) => {
                   marginBottom: 6,
                 }}
               >
-                <Text>শ্রেণীঃ {className || "৩য়"}</Text>
+                <Text>শ্রেণিঃ {className || "৩য়"}</Text>
                 <Text>রোল নম্বরঃ {toBengaliDigits(i + idx + 1)}</Text>
               </View>
               <Text>নামঃ {`${student.name} ` || "—"} </Text>
