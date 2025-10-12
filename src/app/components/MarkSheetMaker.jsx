@@ -222,40 +222,42 @@ const MarkSheetMaker = () => {
           ইসলাম উদ্দিন দাখিল ইনস্টিটিউট ব্রাহ্মণবাড়িয়া
         </Typography>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 2,
-            flexWrap: "wrap",
-          }}
-        >
-          <TextField
-            label="পরীক্ষার নাম"
-            variant="standard"
-            value={examTitle}
-            onChange={(e) => setExamTitle(e.target.value)}
-            sx={{ minWidth: 200 }}
-            InputProps={{ style: { color: "#000" } }}
-            InputLabelProps={{ style: { color: "#000" } }}
-          />
-        </Box>
+        <div className='flex justify-center gap-20 items-center'>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 2,
+              flexWrap: "wrap",
+            }}
+          >
+            <TextField
+              label="পরীক্ষার নাম"
+              variant="standard"
+              value={examTitle}
+              onChange={(e) => setExamTitle(e.target.value)}
+              sx={{ minWidth: 200 }}
+              InputProps={{ style: { color: "#000" } }}
+              InputLabelProps={{ style: { color: "#000" } }}
+            />
+          </Box>
 
-        <Typography variant="h6" sx={{ mt: 1 }}>
-          টাবুলেশন শিট
-        </Typography>
+          <Typography variant="h6"  >
+            টাবুলেশন শিট
+          </Typography>
 
-        <Box sx={{ display: "inline-flex", alignItems: "center", mt: 2 }}>
-          <TextField
-            variant="standard"
-            label="শ্রেণীঃ"
-            value={className}
-            onChange={(e) => setClassName(e.target.value)}
-            sx={{ minWidth: 100 }}
-            InputProps={{ style: { color: "#000" } }}
-          />
-        </Box>
+          <Box sx={{ display: "inline-flex", alignItems: "center"  }}>
+            <TextField
+              variant="standard"
+              label="শ্রেণীঃ"
+              value={className}
+              onChange={(e) => setClassName(e.target.value)}
+              sx={{ minWidth: 100 }}
+              InputProps={{ style: { color: "#000" } }}
+            />
+          </Box>
+        </div>
       </Box>
 
       <MarkSheetTable
