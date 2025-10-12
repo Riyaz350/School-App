@@ -168,44 +168,44 @@ const MarkSheetMaker = () => {
 
   return (
     <div>
-      <div className="pr-2 text-white text-sm lg:text-lg font-bold">
+      <div className="m-2 flex flex-col justify-center items-center w-auto text-white text-sm lg:text-lg font-bold">
         <button
-          className="bg-blue-400 p-3 rounded-lg flex ml-auto mt-5  hover:cursor-pointer"
+          className="bg-blue-400 p-3 rounded-lg  w-fit  hover:cursor-pointer"
           onClick={setPositionsManually}
         >
           📌 Set Position & Make Individual Mark Sheet
         </button>
-      </div>
-      {showIndividualSheets && (
-        <div className="pr-2 text-white text-sm lg:text-lg font-bold">
-          <PDFDownloader
-            students={students}
-            subjects={subjects}
-            examTitle={examTitle}
-            className={className}
-          />
-          <PDFDownloadLink
-            document={
-              <TabulationPDF
-                students={students}
-                subjects={subjects}
-                examTitle={examTitle}
-                className={className}
-              />
-            }
-            fileName="tabulation-sheet.pdf"
-          >
-            {({ loading }) => (
-              <button className="bg-green-500 p-3 rounded-lg mt-3">
-                {loading
-                  ? "📄 Preparing Table PDF..."
-                  : "📥 Download Tabulation Sheet"}
-              </button>
-            )}
-          </PDFDownloadLink>
-        </div>
-      )}
 
+        {showIndividualSheets && (
+          <div className="pr-2 text-white text-sm lg:text-lg font-bold">
+            <PDFDownloader
+              students={students}
+              subjects={subjects}
+              examTitle={examTitle}
+              className={className}
+            />
+            <PDFDownloadLink
+              document={
+                <TabulationPDF
+                  students={students}
+                  subjects={subjects}
+                  examTitle={examTitle}
+                  className={className}
+                />
+              }
+              fileName="tabulation-sheet.pdf"
+            >
+              {({ loading }) => (
+                <button className="bg-green-500 p-3 rounded-lg mt-3">
+                  {loading
+                    ? "📄 Preparing Table PDF..."
+                    : "📥 Download Tabulation Sheet"}
+                </button>
+              )}
+            </PDFDownloadLink>
+          </div>
+        )}
+      </div>
       <Box
         sx={{
           textAlign: "center",
