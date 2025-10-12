@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     backgroundColor: "#f0f0f0",
+    maxHeight:"200px",
+    minHeight:"50px"
   },
   cell: {
     flex: 1,
