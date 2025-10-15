@@ -57,17 +57,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     backgroundColor: "#f0f0f0",
-    maxHeight:"200px",
-    minHeight:"50px"
+    maxHeight:"100px" 
   },
   cell: {
     flex: 1,
-    padding: 4,
+    padding: 6,
     border: "1px solid #000",
     textAlign: "center",
     wordWrap: "break-word",
-    maxHeight:"200px",
-    minHeight:"50px"
+    maxHeight:"100px",
+    minHeight:"15px" 
   },
   section: {
     marginBottom: 30,
@@ -93,8 +92,8 @@ const CombinedMarkSheetPDF = ({ students, subjects, examTitle, className }) => {
       </Text>
 
       <View style={styles.row}>
-        <Text style={styles.headerCell}>রোল </Text>
-        <Text style={styles.headerCell}>নাম </Text>
+        <Text style={[styles.headerCell, {minWidth:"5px"}]}>রোল </Text>
+        <Text style={[styles.headerCell, { minWidth: "120px" }]}>নাম </Text>
         {subjects.map((subj, idx) => (
           <Text
             key={idx}
@@ -110,7 +109,7 @@ const CombinedMarkSheetPDF = ({ students, subjects, examTitle, className }) => {
       {students.map((student, idx) => (
         <View key={idx} style={styles.row}>
           <Text style={styles.cell}>{toBengaliDigits(idx + 1) + " "}</Text>
-          <Text style={styles.cell }>{(student.name || "—") + " "}</Text>
+          <Text style={[styles.cell, { minWidth: "120px" }] }>{(student.name || "—") + " "}</Text>
           {student.marks.map((mark, mIdx) => (
             <Text key={mIdx} style={styles.cell}>
               {toBengaliDigits(mark || "০") + " "}
