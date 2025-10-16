@@ -2,24 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import PDFDownloader from "./PDFDownloader";
-import MarkSheetTable from "./MarkSheetTable";
-import TabulationPDF from "./TabulationPDF";
 import CombinedMarkSheetPDF from "./CombinedMarkSheetPDF";
+import MarkSheetTable from "./MarkSheetTable";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
   TextField,
-  Button,
   Box,
+  Typography,
+  Button,
 } from "@mui/material";
-import Typography from "@mui/material/Typography";
-// import IndividualMarkSheet from "./individualMarkSheet";
+
 const initialSubjects = [
   "বিষয় ১",
   "বিষয় ২",
@@ -39,18 +30,11 @@ const MarkSheetMaker = () => {
   const [examTitle, setExamTitle] = useState("");
   const [className, setClassName] = useState("");
   const [showIndividualSheets, setShowIndividualSheets] = useState(false);
+
   const toBengaliDigits = (number) => {
     const bengaliMap = {
-      0: "০",
-      1: "১",
-      2: "২",
-      3: "৩",
-      4: "৪",
-      5: "৫",
-      6: "৬",
-      7: "৭",
-      8: "৮",
-      9: "৯",
+      0: "০", 1: "১", 2: "২", 3: "৩", 4: "৪",
+      5: "৫", 6: "৬", 7: "৭", 8: "৮", 9: "৯",
     };
     return number
       .toString()
@@ -151,7 +135,7 @@ const MarkSheetMaker = () => {
     let currentRank = 1;
 
     for (let i = 0; i < sorted.length; i++) {
-      const { score, index } = sorted[i];
+      const { score } = sorted[i];
       if (i === 0 || score !== sorted[i - 1].score) {
         positionMap.set(score, currentRank);
         currentRank++;
@@ -164,14 +148,14 @@ const MarkSheetMaker = () => {
     }));
 
     setStudents(updated);
-    setShowIndividualSheets(true); // 👈 Show the button now
+    setShowIndividualSheets(true);
   };
 
   return (
-    <div>
-      <div className="m-2 flex flex-col justify-center items-center w-auto text-white text-sm lg:text-lg font-bold">
+    <div className="px-4 py-6">
+      <div className="flex flex-col items-center gap-4 text-white text-sm lg:text-lg font-bold">
         <button
-          className="bg-blue-400 p-3 rounded-lg  w-fit  hover:cursor-pointer"
+          className="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 transition"
           onClick={setPositionsManually}
         >
           📌 Set Position & Make Mark Sheet
@@ -190,42 +174,14 @@ const MarkSheetMaker = () => {
             fileName="marksheet.pdf"
           >
             {({ loading }) => (
-              <button className="bg-green-600 text-white p-3 rounded-lg mt-3">
-                {loading
-                  ? "📄 Preparing PDF..."
-                  : "📥 Download Combined MarkSheet"}
+              <button className="bg-green-600 px-4 py-2 rounded-lg mt-2">
+                {loading ? "📄 Preparing PDF..." : "📥 Download Combined MarkSheet"}
               </button>
             )}
           </PDFDownloadLink>
-          // <div className="pr-2 text-white text-sm lg:text-lg font-bold">
-          //   <PDFDownloader
-          //     students={students}
-          //     subjects={subjects}
-          //     examTitle={examTitle}
-          //     className={className}
-          //   />
-          //   <PDFDownloadLink
-          //     document={
-          //       <TabulationPDF
-          //         students={students}
-          //         subjects={subjects}
-          //         examTitle={examTitle}
-          //         className={className}
-          //       />
-          //     }
-          //     fileName="tabulation-sheet.pdf"
-          //   >
-          //     {({ loading }) => (
-          //       <button className="bg-green-500 p-3 rounded-lg mt-3">
-          //         {loading
-          //           ? "📄 Preparing Table PDF..."
-          //           : "📥 Download Tabulation Sheet"}
-          //       </button>
-          //     )}
-          //   </PDFDownloadLink>
-          // </div>
         )}
       </div>
+
       <Box
         sx={{
           textAlign: "center",
@@ -242,40 +198,37 @@ const MarkSheetMaker = () => {
           ইসলাম উদ্দিন দাখিল ইনস্টিটিউট ব্রাহ্মণবাড়িয়া
         </Typography>
 
-        <div className="flex justify-center gap-20 items-center">
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 2,
-              flexWrap: "wrap",
-            }}
-          >
-            <TextField
-              label="পরীক্ষার নাম"
-              variant="standard"
-              value={examTitle}
-              onChange={(e) => setExamTitle(e.target.value)}
-              sx={{ minWidth: 200 }}
-              InputProps={{ style: { color: "#000" } }}
-              InputLabelProps={{ style: { color: "#000" } }}
-            />
-          </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 3,
+            flexWrap: "wrap",
+          }}
+        >
+          <TextField
+            label="পরীক্ষার নাম"
+            variant="standard"
+            value={examTitle}
+            onChange={(e) => setExamTitle(e.target.value)}
+            sx={{ minWidth: 200 }}
+            InputProps={{ style: { color: "#000" } }}
+            InputLabelProps={{ style: { color: "#000" } }}
+          />
 
           <Typography variant="h6">ট্যাবুলেশন শীট</Typography>
 
-          <Box sx={{ display: "inline-flex", alignItems: "center" }}>
-            <TextField
-              variant="standard"
-              label="শ্রেণিঃ"
-              value={className}
-              onChange={(e) => setClassName(e.target.value)}
-              sx={{ minWidth: 100 }}
-              InputProps={{ style: { color: "#000" } }}
-            />
-          </Box>
-        </div>
+          <TextField
+            variant="standard"
+            label="শ্রেণিঃ"
+            value={className}
+            onChange={(e) => setClassName(e.target.value)}
+            sx={{ minWidth: 100 }}
+            InputProps={{ style: { color: "#000" } }}
+          />
+        </Box>
       </Box>
 
       <MarkSheetTable
@@ -287,15 +240,6 @@ const MarkSheetMaker = () => {
         clearTable={clearTable}
         toBengaliDigits={toBengaliDigits}
       />
-
-      {/* {showIndividualSheets && (
-        <IndividualMarkSheet
-          students={students}
-          subjects={subjects}
-          examTitle={examTitle}
-          className={className}
-        />
-      )} */}
     </div>
   );
 };
